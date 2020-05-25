@@ -30,7 +30,7 @@ function App() {
 
       (function (d, s, id) {
         var js,
-        fjs = d.getElementsByTagName(s)[0];
+          fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
           return;
         }
@@ -40,23 +40,22 @@ function App() {
         fjs.parentNode.insertBefore(js, fjs);
       })(document, "script", "facebook-jssdk");
     }
-    loadFacebookSDK();
-    //onLoad();
-    try {
-      await Auth.currentSession();
-      userHasAuthenticated(true);
-    } catch (e) {
-      if (e !== "No current user") {
-        onError(e);
+    async function onLoad() {
+      try {
+        await Auth.currentSession();
+        userHasAuthenticated(true);
+      } catch (e) {
+        if (e !== "No current user") {
+          onError(e);
+        }
       }
     }
-    
+    loadFacebookSDK();
+    onLoad();
+
     setIsAuthenticating(false);
   }, [isAuthenticated]);
 
-  // async function onLoad() {
-    
-  // }
   async function handleLogout() {
     await Auth.signOut();
     userHasAuthenticated(false);
