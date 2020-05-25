@@ -17,20 +17,6 @@ function App() {
   useEffect(() => {
     //only re-run our function (edit)
     //if the passed in array of variables have changed
-    loadFacebookSDK();
-    onLoad();
-  }, []);
-
-  function loadFacebookSDK() {
-    window.fbAsyncInit = function () {
-      window.FB.init({
-        appId: config.social.FB,
-        cookie: true,
-        xfbml: true,
-        version: "v7.0",
-      });
-    };
-
     (function (d, s, id) {
       var js,
         fjs = d.getElementsByTagName(s)[0];
@@ -42,6 +28,20 @@ function App() {
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     })(document, "script", "facebook-jssdk");
+    loadFacebookSDK();
+    onLoad();
+  }, []);
+
+  function loadFacebookSDK() {
+    window.fbAsyncInit = function () {
+      window.FB.init({
+        appId: config.social.FB,
+        cookie: true,
+        status: true,
+        xfbml: true,
+        version: "v7.0",
+      });
+    };
   }
 
   async function onLoad() {

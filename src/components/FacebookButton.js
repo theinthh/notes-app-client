@@ -9,7 +9,7 @@ function waitForInit() {
       if (window.FB) {
         res();
       } else {
-        setTimeout(hasFbLoaded, 300);
+        setTimeout(hasFbLoaded, 1000);
       }
     };
     hasFbLoaded();
