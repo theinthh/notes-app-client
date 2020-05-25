@@ -54,7 +54,7 @@ export default function FacebookButton(onLogin) {
 
     try {
       const response = await Auth.federatedSignIn(
-        "facrbook",
+        "facebook",
         { token, expires_at },
         user
       );
