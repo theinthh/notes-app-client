@@ -18,34 +18,30 @@ function App() {
   useEffect(() => {
     //only re-run our function (edit)
     //if the passed in array of variables have changed
-    loadFacebookSDK();
-    onLoad();
-  }, [isAuthenticated]);
+    function loadFacebookSDK() {
+      window.fbAsyncInit = function () {
+        window.FB.init({
+          appId: config.social.FB,
+          cookie: true,
+          xfbml: true,
+          version: "v7.0",
+        });
+      };
 
-  function loadFacebookSDK() {
-    window.fbAsyncInit = function () {
-      window.FB.init({
-        appId: config.social.FB,
-        cookie: true,
-        xfbml: true,
-        version: "v7.0",
-      });
-    };
-
-    (function (d, s, id) {
-      var js,
+      (function (d, s, id) {
+        var js,
         fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, "script", "facebook-jssdk");
-  }
-
-  async function onLoad() {
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, "script", "facebook-jssdk");
+    }
+    loadFacebookSDK();
+    //onLoad();
     try {
       await Auth.currentSession();
       userHasAuthenticated(true);
@@ -54,8 +50,13 @@ function App() {
         onError(e);
       }
     }
+    
     setIsAuthenticating(false);
-  }
+  }, [isAuthenticated]);
+
+  // async function onLoad() {
+    
+  // }
   async function handleLogout() {
     await Auth.signOut();
     userHasAuthenticated(false);
