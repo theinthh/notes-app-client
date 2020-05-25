@@ -15,7 +15,7 @@ const dev = {
     IDENTITY_POOL_ID: "us-east-1:6a5b944b-6935-472d-858a-897526812334",
   },
   social: {
-    FB: "537161220314271",
+    FB: "890744491404581",
   },
 };
 
@@ -36,7 +36,7 @@ const prod = {
     IDENTITY_POOL_ID: "us-east-1:cc6636a9-ab39-41d4-ba5a-7ddb950a783b",
   },
   social: {
-    FB: "537161220314271",
+    FB: "890744491404581",
   },
 };
 
