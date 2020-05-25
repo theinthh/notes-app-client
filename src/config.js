@@ -35,6 +35,9 @@ const prod = {
     APP_CLIENT_ID: "793gjk1rh98fikr0qtgm5v5o9b",
     IDENTITY_POOL_ID: "us-east-1:cc6636a9-ab39-41d4-ba5a-7ddb950a783b",
   },
+  social: {
+    FB: "890744491404581",
+  },
 };
 
 const config = process.env.REACT_APP_STAGE === "prod" ? prod : dev;
