@@ -5,6 +5,7 @@ import LoaderButton from "../components/LoaderButton";
 import { onError } from "../libs/errorLib";
 import { useFormFields } from "../libs/hooksLib";
 import { useAppContext } from "../libs/contextLibs";
+import FacebookButton from "../components/FacebookButton";
 import "./Login.css";
 
 export default function Login() {
@@ -31,9 +32,14 @@ export default function Login() {
     }
   }
 
+  function handleFbLogin() {
+    userHasAuthenticated(true);
+  }
   return (
     <div className="Login">
       <form onSubmit={handleSubmit}>
+        <FacebookButton onLogin={handleFbLogin} />
+        <hr />
         <FormGroup controlId="email" bsSize="large">
           <ControlLabel>Email</ControlLabel>
           <FormControl
