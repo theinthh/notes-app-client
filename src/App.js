@@ -27,7 +27,7 @@ function App() {
         appId: config.social.FB,
         autoLogAppEvents: true,
         xfbml: true,
-        version: "v3.1",
+        version: "v7.0",
       });
     };
 
