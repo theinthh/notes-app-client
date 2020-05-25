@@ -25,7 +25,7 @@ function App() {
     window.fbAsyncInit = function () {
       window.FB.init({
         appId: config.social.FB,
-        autoLogAppEvents: true,
+        cookie: true,
         xfbml: true,
         version: "v7.0",
       });
