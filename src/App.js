@@ -20,9 +20,9 @@ function App() {
       window.fbAsyncInit = function () {
         window.FB.init({
           appId: config.social.FB,
-          cookie: true,
+          autoLogAppEvents : true,
           xfbml: true,
-          version: "v7.0",
+          version: 'v3.1',
         });
       };
 
@@ -36,21 +36,21 @@ function App() {
         js.id = id;
         js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
-      })(document, "script", "facebook-jssdk");
+      }(document, "script", "facebook-jssdk"));
     }
     async function onLoad() {
       try {
-        await Auth.currentAuthenticatedUser();
+        await Auth.currentSession();
         userHasAuthenticated(true);
       } catch (e) {
-        if (e !== "not authenticated") {
+        if (e !== "No current user") {
           onError(e);
         }
       }
+      setIsAuthenticating(false);
     }
     loadFacebookSDK();
     onLoad();
-    setIsAuthenticating(false);
   },[]);
 
   async function handleLogout() {
