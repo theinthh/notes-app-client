@@ -31,6 +31,7 @@ export default function Login() {
       setIsLoading(false);
     }
   }
+  
   function handleFbLogin() {
     userHasAuthenticated(true);
   }
