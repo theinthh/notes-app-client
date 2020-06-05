@@ -27,7 +27,7 @@ export default function FacebookButton(props) {
   };
 
   function statusChangeCallback(response) {
-    if (response.status === "git connected") {
+    if (response.status === "connected") {
       handleResponse(response.authResponse);
     } else {
       handleError(response);
