@@ -73,8 +73,7 @@ function waitForInit() {
       className="FacebookButton"
       onClick={handleClick}
       disabled={isLoading}
-    >
-      Login with Facebook
+    >Login with Facebook
     </LoaderButton>
   );
 }
