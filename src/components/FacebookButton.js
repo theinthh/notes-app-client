@@ -1,48 +1,52 @@
 import React, { useState, useEffect } from "react";
 import { Auth } from "aws-amplify";
-import { onError } from "../libs/errorLib";
 import LoaderButton from "./LoaderButton";
 
-export default function FacebookButton(onLogin) {
+
+export default function FacebookButton(props) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function letsWait() {
+    async function onLoad() {
       await waitForInit();
     }
-    letsWait();
+    onLoad();
     setIsLoading(false);
   },[]);
 
-function waitForInit() {
-  return new Promise((res, rej) => {
-    const hasFbLoaded = () => {
-      if (window.FB) {
-        res();
-      } else {
-        setTimeout(hasFbLoaded, 300);
-      }
-    };
-    hasFbLoaded();
-  });
-}
+  
+
+  function waitForInit() {
+    return new Promise((res, rej) => {
+      const hasFbLoaded = () => {
+        if (window.FB) {
+          res();
+        } else {
+          setTimeout(hasFbLoaded, 300);
+        }
+      };
+      hasFbLoaded();
+    });
+  }
 
   function statusChangeCallback(response) {
-    if (response.status === " connected") {
+    if (response.status === "connected") {
       handleResponse(response.authResponse);
     } else {
       handleError(response);
     }
-  }
-  function handleError(error) {
-    alert(error);
-  }
-  function checkLoginState() {
+  };
+
+  function checkLoginState(){
     window.FB.getLoginStatus(statusChangeCallback);
-  }
+  };
 
   function handleClick() {
-    window.FB.login(checkLoginState, { scope: "public_profile,email" });
+    window.FB.login(checkLoginState, {scope: "public_profile,email"});
+  };
+
+  function handleError(error) {
+    alert(error);
   }
 
   async function handleResponse(data) {
@@ -59,22 +63,24 @@ function waitForInit() {
         user
       );
       setIsLoading(false);
-      onLogin(response);
+      props.onLogin(response);
     } catch (e) {
       setIsLoading(false);
-      onError(e);
+      handleError(e);
     }
   }
-  return (
-    <LoaderButton
-      block
-      bsSize="large"
-      bsStyle="primary"
-      className="FacebookButton"
-      onClick={handleClick}
-      disabled={isLoading}
-    >
-      Login with Facebook
-    </LoaderButton>
-  );
-}
+
+    return (
+      <LoaderButton
+        block
+        bsSize="large"
+        bsStyle="primary"
+        className="FacebookButton"
+        text="Login with Facebook"
+        onClick={handleClick}
+        disabled={isLoading}
+      >
+        Login with Facebook
+      </LoaderButton>
+    );
+  }
