@@ -61,7 +61,7 @@ export default function FacebookButton(props) {
       props.onLogin(response);
     } catch (e) {
       setIsLoading(false);
-      onError(e);
+      handleError(e);
     }
   }
   return (
