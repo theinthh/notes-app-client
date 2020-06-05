@@ -19,10 +19,10 @@ function App() {
     function loadFacebookSDK() {
       window.fbAsyncInit = function () {
         window.FB.init({
-          appId: config.social.FB,
+          appId            : config.social.FB,
           autoLogAppEvents : true,
-          xfbml: true,
-          version: 'v3.1',
+          xfbml            : true,
+          version          : 'v3.1'
         });
       };
 

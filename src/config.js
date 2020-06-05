@@ -16,7 +16,7 @@ const dev = {
   },
   social: {
     FB: "1315672145303760",
-  },
+  }
 };
 
 const prod = {
@@ -37,7 +37,7 @@ const prod = {
   },
   social: {
     FB: "1315672145303760",
-  },
+  }
 };
 
 const config = process.env.REACT_APP_STAGE === "prod" ? prod : dev;
