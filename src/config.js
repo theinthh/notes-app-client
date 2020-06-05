@@ -36,7 +36,7 @@ const prod = {
     IDENTITY_POOL_ID: "us-east-1:cc6636a9-ab39-41d4-ba5a-7ddb950a783b",
   },
   social: {
-    FB: "890744491404581",
+    FB: "1315672145303760",
   },
 };
 

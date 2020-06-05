@@ -16,8 +16,6 @@ function App() {
   //The function will be called every time
   // the component is rendered
   useEffect(() => {
-    //only re-run our function (edit)
-    //if the passed in array of variables have changed
     function loadFacebookSDK() {
       window.fbAsyncInit = function () {
         window.FB.init({
@@ -42,19 +40,18 @@ function App() {
     }
     async function onLoad() {
       try {
-        await Auth.currentSession();
+        await Auth.currentAuthenticatedUser();
         userHasAuthenticated(true);
       } catch (e) {
-        if (e !== "No current user") {
+        if (e !== "not authenticated") {
           onError(e);
         }
       }
     }
     loadFacebookSDK();
     onLoad();
-
     setIsAuthenticating(false);
-  }, [isAuthenticated]);
+  },[]);
 
   async function handleLogout() {
     await Auth.signOut();

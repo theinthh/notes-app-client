@@ -3,6 +3,17 @@ import { Auth } from "aws-amplify";
 import { onError } from "../libs/errorLib";
 import LoaderButton from "./LoaderButton";
 
+export default function FacebookButton(onLogin) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function letsWait() {
+      await waitForInit();
+    }
+    letsWait();
+    setIsLoading(false);
+  },[]);
+
 function waitForInit() {
   return new Promise((res, rej) => {
     const hasFbLoaded = () => {
@@ -15,17 +26,6 @@ function waitForInit() {
     hasFbLoaded();
   });
 }
-
-export default function FacebookButton(onLogin) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function letsWait() {
-      await waitForInit();
-    }
-    letsWait();
-    setIsLoading(false);
-  }, []);
 
   function statusChangeCallback(response) {
     if (response.status === " connected") {
